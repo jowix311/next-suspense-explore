@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 
 const LinksWrapper = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 5000));
+  await new Promise((resolve) => setTimeout(resolve, 3000));
 
   return (
     <ul>
@@ -14,6 +14,11 @@ const LinksWrapper = async () => {
       <li>
         <Link className="text-blue-600" href="/notification">
           🔔 Check out the Notifications
+        </Link>
+      </li>
+      <li>
+        <Link className="text-blue-600" href="/about">
+          About Page
         </Link>
       </li>
     </ul>
