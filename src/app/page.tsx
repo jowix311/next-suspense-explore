@@ -1,3 +1,5 @@
+import { ContactComposite, getContactDetails } from '@/components/contact';
+
 import Link from 'next/link';
 import { Suspense } from 'react';
 
@@ -18,14 +20,18 @@ const LinksWrapper = async () => {
       </li>
       <li>
         <Link className="text-blue-600" href="/about">
-          About Page
+          Visit the About Page
         </Link>
       </li>
     </ul>
   );
 };
 
-export default function Home() {
+
+export default async function Home() {
+
+  const contactPromise = getContactDetails();
+
   return (
     <main>
       <h1 className="scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl mb-4">
@@ -38,6 +44,11 @@ export default function Home() {
 
       <Suspense fallback={<p>Loading the list...</p>}>
         <LinksWrapper />
+      </Suspense>
+
+      {/* Trigger suspense using "use" */}
+      <Suspense fallback={<p>Loading contact info...</p>}>
+        <ContactComposite detailPromise={contactPromise} />
       </Suspense>
     </main>
   );
